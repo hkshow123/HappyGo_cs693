@@ -1,0 +1,151 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/user_portal.css' %}">
+    <style>
+        .left_nav {
+            float: left;
+            position: relative;
+            left: 30px;
+            height: 421px;
+            width: 190px;
+
+        {#background-color: rgba(0, 0, 205, 0.3);#}
+            /*background-color: rgba(0, 0, 0, 0.3);*/
+            /* rgba(65, 105, 250, 0.3);*/
+        }
+
+        .left_nav ul li {
+            height: 36px;
+            line-height: 46px;
+            white-space: nowrap;
+        }
+
+        .left_nav ul li a {
+            color: black;
+            font-size: 18px;
+            margin-left: -5px;
+        }
+
+        .left_nav ul li a span {
+            float: right;
+        }
+
+        .left_nav ul li a:hover {
+            color: #00a4ff;
+        }
+
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: white;
+            position: relative;
+            right: -290px;
+        }
+
+        .profile {
+            border: solid 1px black;
+            position: absolute;
+            display: block;
+            width: 380px;
+            height: 450px;
+            left: 500px;
+        }
+
+        .profile form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .form-row {
+            display: flex;
+            margin-bottom: 10px;
+            align-items: center;
+            padding: 20px 30px;
+        }
+
+        .form-row label {
+            width: 150px;
+            margin-right: 10px;
+        }
+
+        .form-row input {
+            flex-grow: 1;
+        }
+
+
+    </style>
+
+    <meta charset="UTF-8">
+
+    {% block title %}
+        <h2>Manage your Profiles</h2>
+    {% endblock %}
+</head>
+<body>
+
+
+<p class="nav">
+<ul class="nav_head">
+    <li><a href="{% url 'products:index' %}">Home</a></li>
+    <li><a href="#">Dairy</a></li>
+    <li><a href="#">Fresh</a></li>
+    <li><a href="#">Bakery</a></li>
+    <li><a href="#">Meat</a></li>
+    <li><a href="/products/cart">Shopping Cart</a></li>
+    <li style="float: right;color: cadetblue">
+        <a href="/products/profile">My Account</a></li>
+</ul>
+</p>
+{% block content %}
+    <h3>My Account</h3>
+    <div class="left_nav">
+        <ul>
+            <li><a href="/products/profile">Profiles &nbsp&nbsp<span>&gt</span></a></li>
+
+            <li><a href="/products/address">Address &nbsp<span>&gt</span></a></li>
+
+            <li><a href="/products/orders">Order &nbsp&nbsp<span>&gt</span></a></li>
+
+            <li><a href="/products/logout">Log out</a></li>
+        </ul>
+    </div>
+
+    <div class="profile">
+        <form method="post" action="{% url 'products:address_edit' %}">
+            {% csrf_token %}
+            <div class="form-row">
+                <label for="full_name">Full Name</label>
+                <input type="text" name='full_name' value="{{ full_name }}" placeholder="full name">
+            </div>
+            <div class="form-row">
+                <label for="street">Street</label>
+                <input type="text" name='street' value="{{ street }}" placeholder=" street">
+            </div>
+            <div class="form-row">
+                <label for="city">City</label>
+                <input type="text" name='city' value="{{ city }}" placeholder=" city">
+            </div>
+             <div class="form-row">
+                <label for="State">City</label>
+                <input type="text" name='state' value="{{ state }}" placeholder=" state">
+            </div>
+            <div class="form-row">
+                <label for="zipcode">Zip Code</label>
+                <input type="text" name='zipcode' value="{{ zipcode}}" placeholder=" zip code">
+            </div>
+             <div class="form-row">
+                <label for="telephone">Telephone</label>
+                <input type="text" name='telephone' value="{{telephone}}" placeholder=" Telephone">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+{% endblock content %}
+</body>
+</html>

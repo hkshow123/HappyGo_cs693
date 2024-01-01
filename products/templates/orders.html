@@ -1,0 +1,173 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/user_portal.css' %}">
+    <style>
+        .left_nav {
+            float: left;
+            position: relative;
+            left: 30px;
+            height: 421px;
+            width: 190px;
+
+        {#background-color: rgba(0, 0, 205, 0.3);#}
+            /*background-color: rgba(0, 0, 0, 0.3);*/
+            /* rgba(65, 105, 250, 0.3);*/
+        }
+
+        .left_nav ul li {
+            height: 36px;
+            line-height: 46px;
+            white-space: nowrap;
+        }
+
+        .left_nav ul li a {
+            color: black;
+            font-size: 18px;
+            margin-left: -5px;
+        }
+
+        .left_nav ul li a span {
+            float: right;
+        }
+
+        .left_nav ul li a:hover {
+            color: #00a4ff;
+        }
+
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: white;
+            position: relative;
+            right: -290px;
+        }
+
+        .profile {
+            position: absolute;
+            display: block;
+            width: 580px;
+            height: 380px;
+            left: 400px;
+        }
+
+        .profile form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .form-row {
+            display: flex;
+            margin-bottom: 10px;
+            align-items: center;
+            padding: 20px 30px;
+        }
+
+        .form-row label {
+            width: 150px;
+            margin-right: 10px;
+        }
+
+        .form-row input {
+            flex-grow: 1;
+        }
+
+        .product_list_table {
+            table-layout: fixed;
+            width: 100%;
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 1px solid #bbccdd;
+        }
+
+        th, td {
+            display: table-cell;
+            text-align: center;
+            padding: 0 8px;
+            border: 1px solid #bbccdd;
+        }
+        #product_list_form{
+            height: 400px;
+            width: 880px;
+            overflow-y: auto;
+        }
+
+    </style>
+
+    <meta charset="UTF-8">
+
+    {% block title %}
+        <h2>Manage your Profiles</h2>
+    {% endblock %}
+</head>
+<body>
+
+
+<p class="nav">
+<ul class="nav_head">
+    <li><a href="{% url 'products:index' %}">Home</a></li>
+    <li><a href="#">Dairy</a></li>
+    <li><a href="#">Fresh</a></li>
+    <li><a href="#">Bakery</a></li>
+    <li><a href="#">Meat</a></li>
+    <li><a href="/products/cart">Shopping Cart</a></li>
+    <li style="float: right;color: cadetblue">
+        <a href="/products/profile">My Account</a></li>
+</ul>
+</p>
+{% block content %}
+    <h3>My Account</h3>
+    <div class="left_nav">
+        <ul>
+            <li><a href="/products/profile">Profiles &nbsp&nbsp<span>&gt</span></a></li>
+
+            <li><a href="/products/address">Address &nbsp<span>&gt</span></a></li>
+
+            <li><a href="">Order &nbsp&nbsp<span>&gt</span></a></li>
+
+            <li><a href="/products/logout">Log out</a></li>
+        </ul>
+    </div>
+
+    <div class="profile">
+        <form id="product_list_form" action="{% url 'products:edit_to_cart' %}" method="post" class="product_list">
+            {% csrf_token %}
+            <table class="product_list_table" style="width: 800px">
+                <tr id="table_row">
+                    <th class="td_th">Order ID</th>
+                    <th id="td_th1">Total Price</th>
+                    <th class="td_th">Date</th>
+                    <th class="td_th">Status</th>
+                    <th class="td_th">Tracking</th>
+                    <th class="td_th">Details</th>
+                </tr>
+                {% for order in order_list %}
+                    <tr id="list_detail">
+                        <td class="td_th">{{ order.id }}</td>
+                        <td id="td_th2">{{ order.total_price }}</td>
+                        <td class="td_th">{{ order.created_at }}</td>
+                        <td class="td_th">{{ order.ship_status }}</td>
+                        <td class="td_th">{{ order.tracking_number }}</td>
+                        <td>
+                            <a href="{% url 'products:order_details' order.id %}" class="btn btn-danger">Details</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="3">Your cart is empty.</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+        </form>
+    </div>
+
+{% endblock content %}
+</body>
+</html>

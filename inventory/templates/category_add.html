@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Add a new Brand {% endblock %}
+{% block content %}
+
+
+    <h2>Add a Category</h2>
+    <form action="" method="post" style="height: 150px">
+        {% csrf_token %}
+
+        <p>
+            <lable>Category Name: <input type="text" name="category"></lable>
+        </p>
+
+        <p>
+            <lable><input type="reset"></lable>
+
+            <lable><input type="submit"></lable>
+        </p>
+        <div class="list">
+            <table>
+                <thead>
+                <tr>
+                    <th>Category ID</th>
+                    <th>Category name</th>
+                    <th>Modify/Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for obj in data_list %}
+                    <tr>
+                        <td>{{ obj.id }} </td>
+                        <td>{{ obj.name }}</td>
+                        <td><a href="{% url 'inventory:category_edit' obj.id %}">Modify</a>
+                           <a href="{% url 'inventory:category_delete' obj.id %}" class="btn btn-danger" >/Delete</a></td>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </form>
+
+{% endblock %}

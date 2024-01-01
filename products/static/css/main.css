@@ -1,0 +1,415 @@
+.w {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.body {
+    background-color: #f3f5f7;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+.header {
+    height: 42px;
+    margin: 30px auto; /*会层叠w的margin*/
+}
+
+.logo img {
+    height: 42px;
+    width: 198px;
+}
+
+.logo {
+    float: left;
+    margin-right: 60px;
+}
+
+.nav ul li {
+    float: left;
+    margin: 0 15px;
+}
+
+.nav ul li a {
+    display: block;
+    height: 42px;
+    line-height: 42px;
+    padding: 0 10px;
+    font-size: 18px;
+    color: #050505;
+}
+
+.nav ul li a:hover {
+    color: #00a4ff;
+    border-bottom: 2px solid #00a4ff;
+}
+
+.search {
+    display: inline-block;
+    float: left;
+    height: 42px;
+    width: 450px;
+    line-height: 42px;
+    margin-left: 5px;
+}
+
+.search input {
+    float: left;
+    height: 28px;
+    width: 345px; /*padding left 15px 会撑大盒子 所以需要用360 -15*/
+    border: 1px solid #00a4ff;
+    border-right: 0; /*去除右边框*/
+    color: #bfbfbf;
+    font-size: 14px;
+    padding-left: 15px;
+    margin-top: 5px;
+}
+
+.search button {
+    float: left;
+    width: 49px;
+    height: 32px;
+    border: 0; /*按钮默认有边框需要手动去掉*/
+    background-image: url("products/static/images/btn.png");
+    margin-top: 5px;
+}
+
+.user img {
+    height: 41px;
+    width: 49px;
+    vertical-align: middle;       /*此处修改可以使得文字垂直居中对齐，默认baseline对齐 只对行内和行内块有效*/
+}
+
+.user {
+    float: right;
+    height: 41px;
+    line-height: 41px;
+    margin-right: 20px;
+    font-size: 16px;
+    color: red;
+}
+
+.banner {
+    height: 421px;
+    position: relative;
+    top:20px;
+    /*left: 150px;*/
+    background-image: url("../images/background.png");
+    background-color: rgba(25, 25, 112, 0.3);
+}
+
+.banner .w {
+    height: 421px;
+    /*background-image: url("../images/background.png");*/
+    background-repeat: no-repeat;
+}
+
+.subnav {
+    float: left;
+    position: relative;
+    left: -750px;
+    height: 421px;
+    width: 190px;
+
+    background-color: rgba(0, 0, 205, 0.3);
+    /*background-color: rgba(0, 0, 0, 0.3);*/
+    /* rgba(65, 105, 250, 0.3);*/
+}
+
+.subnav ul li {
+    height: 46px;
+    font-size: 34px;
+    line-height: 46px;
+}
+
+.subnav ul {
+    margin: 0;
+    padding: 0;
+}
+
+.sub_course ul {
+    margin: 0;
+    padding: 0;
+}
+
+.sub_course ul li {
+    width: 170px;
+    border-bottom: 1px solid #a5a5a5;
+    margin: 0 15px;
+}
+
+.subnav ul li a {
+    color: white;
+    font-size: 14px;
+    margin-left: 20px;
+}
+
+.subnav ul li a span {
+    float: right;
+}
+
+.subnav ul li a:hover {
+    color: #00a4ff;
+}
+
+.adv {
+    float: right;
+    width: 230px;
+    height: 300px;
+    background-color: pink;
+    margin-top: 50px;
+}
+
+.adv > h2 {
+    height: 48px;
+    background-color: skyblue;
+    line-height: 48px;
+    text-align: center;
+    font-size: 18px;
+    margin-top: 0;
+    color: white;
+}
+
+.sub_course ul li h4 {
+    color: #4e4e4e;
+    font-size: 16px;
+    margin: 0;
+}
+
+.sub_course ul li p {
+    margin: 0;
+    font-size: 14px;
+    color: #a5a5a5;
+}
+
+.sub_course ul li {
+    margin-top: 20px;
+}
+
+.adv_bt {
+    width: 170px;
+    height: 50px;
+    border: 1px solid deepskyblue;
+    margin: 0 20px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 16px;
+    color: dodgerblue;
+}
+
+.suggest {
+    position: relative;
+    height: 60px;
+    /*width: 1290px;*/
+    width: 100%;
+    top: 20px;
+    /*left: 48px;*/
+    background-color:  rgba(15, 105, 200, 0.3);
+    box-shadow: 0 4px 3px 3px rgba(0, 0, 0, 0.2);
+
+}
+
+.suggest .course ul li:hover {
+    color: #00a4ff;
+    border-bottom: #00a4ff;
+}
+
+.boutique h4 {
+    height: 16px;
+    float: left;
+    color: red;
+    line-height: 16px;
+    margin: 20px 18px;
+}
+
+.course ul li {
+    float: left;
+    height: 18px;
+    line-height: 18px;
+    margin: 18px 10px;
+    padding: 0 30px;
+    color: #00a4ff;
+    border-left: 1px solid #cccccc;
+}
+
+.r_button {
+    float: right;
+    color: #00a4ff;
+    font-size: 16px;
+}
+
+.r_button a {
+    display: block;
+    height: 18px;
+    line-height: 18px;
+    color: #00a4ff;
+    margin: 18px 20px;
+
+}
+
+.box {
+    margin-top: 16px;
+}
+
+.box-hd {
+    height: 45px;
+}
+
+.box-hd h3 {
+    float: left;
+    font-size: 20px;
+    color: #494949;
+}
+
+.box-hd a {
+    float: right;
+    font-size: 14px;
+    color: #a5a5a5;
+    margin-top: 20px;
+    margin-right: 30px;
+}
+
+.box-bd ul li {
+    float: left;
+    width: 230px;
+    height: 270px;
+    background-color: #fff;
+    margin-right: 20px;
+    margin-top: 15px;
+}
+
+.box-bd {
+    margin-top: 20px;
+}
+
+.box-bd ul {
+    float: left;
+    width: 1250px; /
+    /*margin: 0; */
+    /*padding: 0;*/
+}
+
+.box-bd ul li img {
+    width: 100%;
+    height: 170px;
+}
+
+.box-bd ul li h4 {
+    margin: 15px;
+    text-align: center;
+    font-size: 14px;
+    color: #050505;
+    font-weight: 400;
+}
+
+.box-bd ul li .sp1 {
+    color: red;
+    margin: 10px 15px 0 15px;
+    font-size: 14px;
+}
+
+.sp2 {
+    color: #999999;
+    font-size: 14px;
+}
+
+.footer {
+    /*height: 415px;*/
+    /*background-color: pink;*/
+    margin-top: 50px;
+}
+
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+.footer .w {
+    padding-top: 20px;
+}
+
+.copyright {
+    float: left;
+}
+
+.links {
+    float: right;
+}
+
+.copyright img {
+    height: 62px;
+    width: 218px;
+}
+
+.copyright p {
+    font-size: 12px;
+    color: #666;
+}
+
+.copyright a {
+    display: block;
+    width: 118px;
+    height: 33px;
+    color: #00a4ff;
+    border: 1px solid #00a4ff;
+    line-height: 33px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.links dl dt {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+    width: auto;
+    margin-left: auto;
+    display: inline-block;
+}
+
+.links dl dd a {
+    font-size: 14px;
+    color: #333333;
+}
+
+.links dl dd {
+    width: auto;
+    margin-left: auto;
+    /*display: inline-block;*/
+}
+.links dl {
+    float: left;
+    margin-left: 80px;
+}
+
+#add_to_cart{
+    display: block;
+    color: #1b1b1b;
+    width: 120px;
+
+}
+
+.search_button{
+    border-radius: 8px;
+    padding:0 5px;
+    position: relative;
+    left: 10px;
+    background-color: #6f94c6;
+}

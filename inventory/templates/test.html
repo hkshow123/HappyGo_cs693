@@ -1,0 +1,15 @@
+<div class="search-label-icon">
+    <form action="" method="post" >
+    {% csrf_token %}
+    <p class="search_bar">
+        <label for=""></label>
+        <select name="doc_type" id="" style="width: 100px">
+            {% for key,val in type_list.items %}
+            <option value="{{ key}}">{{ val }}</option>
+            {% endfor %}
+        </select>
+        <input class="search_text"  name="keyword" type="text" placeholder="Search">
+        <input type="submit" value="Search">
+    </p>
+    </form>
+</div>

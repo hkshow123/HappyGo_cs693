@@ -1,0 +1,119 @@
+
+h2 {
+    text-align: center;
+}
+
+form {
+    text-align: right;
+    height: 500px;
+    width: 400px;
+    background-color: aqua;
+    position: absolute;
+    left: 470px;
+    top: 150px;
+}
+
+form label {
+    display: inline;
+}
+
+form label {
+    display: inline;
+}
+
+select {
+    text-align: right;
+    width: 210px;
+    position: relative;
+    left: -68px;
+}
+
+.sel {
+    text-align: left;
+    position: relative;
+    width: auto;
+    left: -39px;
+}
+
+input {
+    padding-right: 60px;
+    margin-right: 40px;
+}
+
+li a {
+    display: block;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: white;
+}
+
+.nav_head {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    background-color: #333;
+    overflow: hidden;
+    position: relative;
+}
+
+li {
+    float: left;
+    display: inline;
+    right: 30px;
+}
+
+a:hover {
+    color: aqua;
+}
+
+th {
+    background-color: #04AA6D;
+    width: 150px;
+}
+
+td, th {
+    padding: 8px 0px;
+    margin: 0px;
+    border: 1px solid #ddd;
+}
+
+table {
+    position: relative;
+    left: 0px;
+    text-align: center;
+    border-collapse: collapse;
+    top: 50px
+}
+
+tr:hover {
+    background-color: aqua;
+}
+
+th {
+    background-color: #04AA6D;
+    width: 150px;
+}
+
+td, th {
+    padding: 8px 0px;
+    margin: 0px;
+    border: 1px solid #ddd;
+}
+
+table {
+    position: relative;
+    left: 0px;
+    text-align: center;
+    border-collapse: collapse;
+    top: 50px
+}
+
+tr:hover {
+    background-color: aqua;
+}
+
+form {
+    width: auto;
+    text-align: center;
+    left: 380px;
+}

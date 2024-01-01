@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'product_list.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .product_list_table {
+            table-layout: fixed; /* 新增固定表格布局属性 */
+            width: 100%; /* 根据需要设置表格宽度 */
+        }
+
+        th, td {
+            display: table-cell; /* 改变布局属性 */
+            text-align: center;
+            border: 1px solid #bbccdd;
+            padding: 0 8px;
+        }
+
+        #td_th2 {
+            width: 250px;
+        }
+
+        .td_th {
+            display: inline-block;
+            overflow: hidden;
+            width: auto;
+            max-height: 30px;
+            max-width: 570px;
+        }
+
+        #item_total {
+            width: 60px;
+        }
+
+        #total_price {
+        {#border: solid 1px black; #} font-size: 22px;
+            color: #1b1b1b;
+            width: 800px;
+        }
+
+        #check_out {
+            display: inline-block;
+            background-color: #ff3211;
+            color: #81d4fa;
+            border-radius: 10px;
+            height: 30px;
+            width: 120px;
+            font-size: 18px;
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+
+<p class="nav">
+<ul class="nav_head">
+    <li><a href="/products/#">Home</a></li>
+    <li><a href="#">Dairy</a></li>
+    <li><a href="#">Fresh</a></li>
+    <li><a href="#">Bakery</a></li>
+    <li><a href="#">Meat</a></li>
+    <li><a href="/products/cart">Shopping Cart</a></li>
+    <li style="float: right;color: cadetblue"><a href="{% url 'products:logout' %}">Logout</a></li>
+</ul>
+</p>
+
+<h2 style="text-align: center">Check Out Your Order</h2>
+<form id="product_list_form" action="{% url 'products:edit_to_cart' %}" method="post" class="product_list">
+    {% csrf_token %}
+    <table class="product_list_table" style="width: 800px">
+        <tr id="table_row">
+            <th class="td_th">UPC</th>
+            <th id="td_th1">Product Name</th>
+            <th class="td_th">Price</th>
+            <th class="td_th">Quantity</th>
+            <th class="td_th">Total</th>
+        </tr>
+        {% for item in cart.items.all %}
+            <tr id="list_detail">
+                <td class="td_th" name="item_upc" value="{{ item.product.upc }}">{{ item.product.upc }}</td>
+                <td id="td_th2">{{ item.product.product_name.name }}</td>
+                <td class="td_th">{{ item.product.store_price }}</td>
+                <td class="td_th">{{ item.quantity }}</td>
+                <td>${{ item.total_price }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="3">Your cart is empty.</td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% if cart.items.all %}
+        <p id="total_price">
+            <label for="total_price">Total Price: ${{ total_price }}</label>
+            <button type="submit" name="action" value="checkout" id="check_out" class="btn">Check Out</button>
+        </p>
+    {% endif %}
+
+</form>
+
+</body>
+</html>

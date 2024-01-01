@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href={% static 'admin_page.css' %}>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Welcome to Librarian's page</h2>
+<nav class="nav-header">
+    <ul class="nav_head">
+        <li><a href="/admin_page" style="background-color: green">Home</a></li>
+        <li><a href="/search">Search</a></li>
+        <li><a href="/add_item">Add item</a></li>
+        <li><a href="/user_manage">Manage Users</a></li>
+        <li style="float: right"><a href="/login">log out</a></li>
+    </ul>
+</nav>
+<p class="inventory">
+<div class="stock"><span style="font-size: 24px">In stock:</span>
+    <ul>
+        <li>Book     : <span id="stock1">1</span></li>
+        <li>Journal: <span id="stock2">2</span></li>
+        <li>magazine: <span id="stock3">3</span></li>
+        <li>Thesis: <span id="stock4">4</span></li>
+        <li>Technical report: <span id="stock5">5</span></li>
+    </ul>
+    <table></table>
+</div>
+<div class="lend_out"><span style="font-size: 24px">Lend out:</span>
+        <ul>
+        <li>Book     : <span id="stock1">1</span></li>
+        <li>Journal: <span id="stock2">2</span></li>
+        <li>magazine: <span id="stock3">3</span></li>
+        <li>Thesis: <span id="stock4">4</span></li>
+        <li>Technical report: <span id="stock5">5</span></li>
+    </ul>
+</div>
+<div class="ranking"><span style="font-size: 24px">Ranking:</span>
+        <ul>
+        <li>Book     : <span id="stock1">1</span></li>
+        <li>Journal: <span id="stock2">2</span></li>
+        <li>magazine: <span id="stock3">3</span></li>
+        <li>Thesis: <span id="stock4">4</span></li>
+        <li>Technical report: <span id="stock5">5</span></li>
+    </ul>
+</div>
+<div class="pass_due"><span style="font-size: 24px">Pass due user info:</span>
+        <ul>
+        <li>User ID   : <span id="stock1">1</span></li>
+        <li>Due day <span id="stock2">2</span></li>
+        <li>Document type <span id="stock3">3</span></li>
+        <li>Book ID <span id="stock4">4</span></li>
+        <li>operation: <span id="stock5">5</span></li>
+    </ul>
+</div>
+
+
+</p>
+
+
+</body>
+</html>

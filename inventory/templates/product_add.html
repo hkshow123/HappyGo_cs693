@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block title %}
+    <h2>Add Product</h2>
+{% endblock %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'product_css.css' %}">
+    <div class="input_page">
+        <form class="main_panel" action="" method="post">
+            {% csrf_token %}
+            <p id="form_header">
+                <label for="">Add New Product</label>
+            </p>
+            <p>
+                <label>UPC: <input type="text" name="upc" id="upc"></label>
+            </p>
+            <p>
+
+                <label class="sel1">Product type:</label>
+                <select class="product_type" name="product_type_id" id="product_type">
+                    {% for category in category_list %}
+                        <optgroup label="{{ category.name }}">
+                            {% for type_obj in type_list %}
+                                {% if type_obj.category_id.id == category.id %}
+                                    <option value="{{ type_obj.id }}">{{ type_obj.name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </optgroup>
+                    {% endfor %}
+                </select>
+
+            </p>
+            <p>
+                <label>Name: <input type="text" name="name"></label>
+            </p>
+            <p>
+                <label class="sel">Brand:</label>
+                <select class="form-control" name="brand_id" id="brand_id">
+                    {% for item in brand_list %}
+                        <option value={{ item.id }}>{{ item.name }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <p>
+                <label>Weight: <input type="text" name="weight"></label>
+            </p>
+            <p id="is_active">
+                <label>Is_Active: </label> &nbsp&nbsp Active <input id="active" type="radio" name="is_active" value="True">
+                Inactive<input type="radio"  name="is_active" value="False">
+            </p>
+            <p id="description">
+                <label id="desc_label">Description:</label> <textarea type="text" name="description" cols="30px"
+                                                                      rows="8px"> </textarea>
+            </p>
+
+{#            <p>#}
+{#                <label>Total: <input type="number" name=i"total" id="total"></label>#}
+{#            </p>#}
+            <p>
+                <label><input type="reset"></label>
+
+                <label><input type="submit"></label>
+            </p>
+        </form>
+    </div>
+
+    <form class="product_list_form" action="" method="post">
+        {% csrf_token %}
+        <table class="product_list" style="width: auto">
+            <tr>
+                <th>id</th>
+                <th>UPC</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Brand</th>
+                <th>Weight(Kg)</th>
+                <th>Description</th>
+                <th>created at</th>
+                <th>Is Active</th>
+                <th>Modify/Delete</th>
+            </tr>
+            {% for obj in product_list %}
+                {% with inventory_obj=inventory_list.obj.id %}
+                    <tr>
+                        <td>{{ obj.id }}</td>
+                        <td>{{ obj.upc }}</td>
+                        <td style="display:inline-block;overflow:hidden;max-height: 90px">
+                            {{ obj.name }}</td>
+                        <td>{{ obj.product_type_id.name }}</td>
+                        <td>{{ obj.brand_id.name }}</td>
+                        <td>{{ obj.weight }}</td>
+                        <td style="display:inline-block;overflow:hidden;max-height: 90px">
+                            {{ obj.description }}</td>
+                        <td>{{ obj.created_at }}</td>
+                        <td>{{ obj.is_active }}</td>
+                        <td><a href="{% url 'inventory:product_edit' obj.id%}" class="btn btn-primary">Modify</a>
+                            <a href="{% url 'inventory:product_delete' obj.id%}" class="btn btn-danger">/Delete</a>
+                        </td>
+                    </tr>
+                {% endwith %}
+            {% endfor %}
+        </table>
+    </form>
+
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'add_item.css' %}">
+
+    <meta charset="UTF-8">
+
+    {% block title %}
+
+    {% endblock %}
+</head>
+<body>
+<p class="nav">
+<ul class="nav_head">
+    <li><a href="/inventory/admin_page/" style="background-color:green">Home</a></li>
+      <li><a href="/inventory/inventory_mg/">Inventory </a></li>
+    <li><a href="/inventory/product_add">Product</a></li>
+    <li><a href="/inventory/type_add/">Product Type</a></li>
+    <li><a href="/inventory/add_brand">Brand</a></li>
+    <li><a href="/inventory/category_add">Category</a></li>
+    <li><a href="/inventory/inventory_mg/">Search</a></li>
+    <li style="float: right;color: cadetblue"><a href="{% url 'inventory:logout' %}">Logout</a></li>
+</ul>
+</p>
+{% block content %}
+
+
+{% endblock content %}
+</body>
+</html>

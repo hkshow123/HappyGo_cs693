@@ -1,0 +1,129 @@
+{% load my_filters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'product_list.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .product_list_table {
+            table-layout: fixed;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: center;
+            border: 1px solid #bbccdd;
+            padding: 0 8px;
+        }
+
+        .product_name, .product_price, .product_quantity, .product_total, .product_date {
+            display: table-cell;
+        }
+
+        .product_name {
+            width: 250px;
+        }
+
+        .total_price, .checkout_button, .footer_content, .address {
+            width: 800px;
+        }
+
+        .checkout_button {
+            background-color: #ff3211;
+            color: #81d4fa;
+            border-radius: 10px;
+            height: 30px;
+            width: 120px;
+            font-size: 18px;
+            display: inline-block;
+        }
+
+        .footer_content, .address {
+            border: solid 1px black;
+        }
+
+        .sub_address, .total_price_label {
+            text-align: left;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<p class="nav">
+<ul class="nav_head">
+    <li><a href="/products/#">Home</a></li>
+    <li><a href="#">Dairy</a></li>
+    <li><a href="#">Fresh</a></li>
+    <li><a href="#">Bakery</a></li>
+    <li><a href="#">Meat</a></li>
+    <li><a href="/products/cart">Shopping Cart</a></li>
+    <li style="float: right;color: cadetblue"><a href="{% url 'products:user_view' %}">My Account</a></li>
+</ul>
+</p>
+
+<h2 style="text-align: center">Order Details</h2>
+<h4 id="order_id">Order Number: &nbsp;{{ order.id }}</h4>
+<form id="product_list_form" action="{% url 'products:checkout' %}" method="post" class="product_list">
+    {% csrf_token %}
+    <table class="product_list_table" style="width: 800px">
+        <tr id="table_row">
+            <th id="td_th1">Product Name</th>
+            <th class="td_th">Price</th>
+            <th class="td_th">Quantity</th>
+            <th class="td_th">Items total price</th>
+            <th class="td_th">Date</th>
+        </tr>
+        {% for item in order_items %}
+            <tr id="list_detail">
+
+                <td id="td_th2">{{ item.product.product_name.name }}</td>
+                <td class="td_th">{{ item.price }}</td>
+                <td class="td_th">{{ item.quantity }}</td>
+                <td class="td_th">${{ item.price|multiply:item.quantity|floatformat:2 }}</td>
+                <td class="td_th">{{ item.order.created_at }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="3">Your cart is empty.</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <div class="footer_content">
+
+        <div id="address">
+            <p><label for="Shipping Address">Shipping Address</label> &nbsp;|&nbsp
+                <label for="Shipping status" style="color: #e35f5f;float: right"> &nbsp
+                    Status: {{ order.ship_status }}</label>
+                <label for="Tracking" style="float: right">Tracking Number: {{ order.tracking_number }}&nbsp</label>
+            </p>
+        </div>
+        <div>
+            <p class="sub_address">
+                <label for="Full name">&nbsp&nbsp{{ profile.full_name }}</label>
+            </p>
+            <p class="sub_address">
+                <label for="street">&nbsp&nbsp{{ profile.street }}</label>,
+                <label for="city">&nbsp&nbsp{{ profile.city }}</label>,
+                <label for="state">&nbsp&nbsp{{ profile.state }}</label>,
+            </p>
+            <p class="sub_address">
+                <label for="zip code">&nbsp&nbsp{{ profile.zipcode }}</label>
+            </p>
+            <p class="sub_address">
+                <label for="telephone">&nbsp&nbsp{{ profile.telephone }}</label>
+            </p>
+            <p>
+                <label for="total_price" class="sub_address">Amount: $ {{ total_price }} &nbsp;</label>
+            </p>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>

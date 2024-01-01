@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% block title %}
+    <h2>Inventory management</h2>
+{% endblock %}
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'admin_page.css' %}">
+    <style>
+        .profile {
+            position: absolute;
+            display: block;
+            left: -360px;
+            top: 210px
+        }
+
+        .profile form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 1043px;
+            height: 370px;
+        }
+
+
+        .form-row label {
+            width: 150px;
+            margin-right: 10px;
+        }
+
+        .form-row input {
+            flex-grow: 1;
+        }
+
+        .product_list_table {
+            table-layout: fixed;
+            width: 100%;
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 1px solid #bbccdd;
+        }
+
+        th, td {
+            display: table-cell;
+            text-align: center;
+            padding: 0 8px;
+            border: 1px solid #bbccdd;
+        }
+
+        #order_list_form {
+            height: 400px;
+            overflow-y: auto;
+        }
+
+        thead th {
+            position: sticky;
+            top: 0;
+            background-color: #f9f9f9;
+        }
+
+        #ship_status{
+            position: relative;
+            text-align: center;
+            width: auto;
+            left: 0;
+        }
+
+
+    </style>
+    <div class="inventory">
+        <div class="stock" id="sub_box"><span style="font-size: 24px">In stock:</span>
+            <ul>
+                <li>Book : <span id="stock1">1</span></li>
+                <li>Journal: <span id="stock2">2</span></li>
+                <li>magazine: <span id="stock3">3</span></li>
+                <li>Thesis: <span id="stock4">4</span></li>
+                <li>Technical report: <span id="stock5">5</span></li>
+            </ul>
+            <table></table>
+        </div>
+        <div class="lend_out" id="sub_box"><span style="font-size: 24px">Lend out:</span>
+            <ul>
+                <li>Book : <span id="stock1">1</span></li>
+                <li>Journal: <span id="stock2">2</span></li>
+                <li>magazine: <span id="stock3">3</span></li>
+                <li>Thesis: <span id="stock4">4</span></li>
+                <li>Technical report: <span id="stock5">5</span></li>
+            </ul>
+        </div>
+        <div class="ranking" id="sub_box"><span style="font-size: 24px">Ranking:</span>
+            <ul>
+                <li>Book : <span id="stock1">1</span></li>
+                <li>Journal: <span id="stock2">2</span></li>
+                <li>magazine: <span id="stock3">3</span></li>
+                <li>Thesis: <span id="stock4">4</span></li>
+                <li>Technical report: <span id="stock5">5</span></li>
+            </ul>
+        </div>
+        <div class="profile">
+            <h3>Order Management</h3>
+            <form id="order_list_form" action="{% url 'inventory:order_edit' %}" method="post" class="product_list">
+                {% csrf_token %}
+                <table class="product_list_table">
+
+                    <tr id="table_row">
+                        <th class="td_th">Order ID</th>
+                        <th id="td_th1">Total Price</th>
+                        <th class="td_th">Date</th>
+                        <th class="td_th">Status</th>
+                        <th class="td_th">Tracking</th>
+                        <th class="td_th">Modify/Details</th>
+                    </tr>
+                    {% for order in order_list %}
+                        <tr id="list_detail">
+                            <td class="td_th">{{ order.id }}</td>
+                            <td id="td_th2">{{ order.total_price }}</td>
+                            <td class="td_th">{{ order.created_at }}</td>
+                            <td>
+                                <select name="ship_status_{{ order.id }}" id="ship_status">
+                                    <option value="True"  {% if order.ship_status %} selected {% endif %}>True</option>
+                                    <option value="False" {% if not order.ship_status %}selected{% endif %}>False
+                                    </option>
+                                </select>
+                            </td>
+                            <td class="td_th">
+                                <input type="text" name="tracking_{{ order.id }}" style="width: 65px"
+                                       value="{{ order.tracking_number }}">
+                            </td>
+                            <td>
+                                <button type="submit" name="order_id" value="{{ order.id }}">Modify</button>
+                                /<a href="{% url 'products:order_details' order.id %}" class="btn btn-danger">Details</a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="3">Your cart is empty.</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+
+            </form>
+        </div>
+
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Image Upload Page</h2>
+<form method="post" enctype="multipart/form-data">
+    <h3>UPC: {{ upc }}: Images Upload</h3>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+    <div class="list">
+            <table>
+                <thead>
+                <tr>
+                    <th>UPC</th>
+                    <th>URL</th>
+                    <th>Modify/Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for obj in data_list %}
+                    <tr>
+                        <td>{{ obj.upc.upc }} </td>
+                        <td>{{ obj.url }}</td>
+                        <td><a href="{% url 'inventory:image_add' obj.upc %}">Modify</a>
+                            <a href="{% url 'inventory:image_delete' obj.upc %}" class="btn btn-danger">/Delete</a></td>
+                        </td>
+                        <td>{{ obj.created_at }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        h2, form {
+            position: absolute;
+            top: 150px;
+            left: 590px;
+            text-align: center;
+        }
+
+        a {
+            text-decoration: None;
+        }
+
+        .login_page {
+            position: absolute;
+            top: 230px;
+            left: 500px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Login to your admin account</h2>
+<form action="{% url 'inventory:login' %}" method="post" class="login_page">
+    {% csrf_token %}
+    <label> User Name: <input type="text" name="user_name" placeholder="user_name"></label>
+    <label>Password: <input type="password" name="password" placeholder="password"></label>
+    <div style="color: red">{{ message }}</div>
+    <p>
+        <button type="button" onclick="location.href='{% url 'inventory:register' %}'">Register</button>
+        <input type="reset">
+        <input type="submit">
+    </p>
+</form>
+
+</body>
+</html>

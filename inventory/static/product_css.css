@@ -1,0 +1,75 @@
+.main_panel {
+    position: absolute;
+    left: 20px;
+    top: 150px;
+    display: inline-block;
+    text-align: right;
+    width: 350px;
+
+}
+
+.sel1 {
+    position: relative;
+    text-align: left;
+    left: -40px;
+}
+
+.product_type {
+    position: absolute;
+    left: 100px;
+}
+
+.main_panel textarea {
+    position: relative;
+    width: 200px;
+    text-align: left;
+    right: 40px;
+}
+
+#brand_id, #product_type {
+    display: inline-block;
+    position: relative;
+    text-align: right;
+    left: -40px;
+}
+
+#form_header {
+    height: 20px;
+    text-align: center;
+    font-family: "Apple Braille";
+    font-size: 18px;
+}
+
+#description {
+    display: inline-block;
+    text-align: left;
+}
+
+#desc_label {
+    position: relative;
+    text-align: left;
+    left: -38px;
+    top: -100px;
+}
+
+.product_list {
+    position: relative;
+    top: 3px;
+    border: solid 1px #000000;
+}
+
+#is_active {
+    position: relative;
+    display: block;
+    height: 0px;
+    width: 295px;
+    text-align: left;
+    left: 30px;
+    bottom: 5px;
+    top: 5px
+}
+
+.product_list_form {
+    max-height: 550px;
+    overflow: auto;
+}

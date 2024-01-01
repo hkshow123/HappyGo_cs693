@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'product_list.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+
+<body>
+
+<p class="nav">
+<ul class="nav_head">
+    <li><a href="/inventory/admin_page/" style="background-color:green">Home</a></li>
+    <li><a href="/inventory/inventory_mg/">Inventory </a></li>
+    <li><a href="/inventory/product_add">Product</a></li>
+    <li><a href="/inventory/type_add/">Product Type</a></li>
+    <li><a href="/inventory/add_brand">Brand</a></li>
+    <li><a href="/inventory/category_add">Category</a></li>
+    <li><a href="/inventory/location_add">Location </a></li>
+    <li><a href="inventory/inventory_mg/">Search</a></li>
+    <li style="float: right;color: cadetblue"><a href="{% url 'inventory:logout' %}">Logout</a></li>
+</ul>
+</p>
+
+<h2 style="text-align: center">Inventory Management</h2>
+<div class="search-label-icon">
+    <form action="/inventory/search/" method="post">
+        {% csrf_token %}
+        <p class="search_bar">
+            <label for=""></label>
+            <select name="doc_type" id="type_select" style="width: 100px">
+                <option value="Name">Name</option>
+                <option value="ID">ID</option>
+                <option value="UPC">UPC</option>
+            </select>
+            <input class="search_text" name="keyword" type="text" placeholder="Search">
+            <input type="submit" id="search_button" value="Search">
+        </p>
+    </form>
+</div>
+<h4 id="errors_msg" style="color: red; position:absolute;top:100px;right: 30px">{{ error_message }}</h4>
+<form id="product_list_form" action="/inventory/inventory_edit/" method="post" class="product_list">
+    {% csrf_token %}
+    <table class="product_list_table" style="width: auto">
+        <tr id="table_row">
+            <th class="td_th">Product ID</th>
+            <th class="td_th">UPC</th>
+            <th class="td_th">Name</th>
+            <th class="td_th">Type</th>
+            <th class="td_th">Brand</th>
+            <th class="td_th">Retail price</th>
+            <th class="td_th">Store price</th>
+            <th class="td_th">Weight(Kg)</th>
+            <th class="td_th">Description</th>
+            <th class="td_th">Media</th>
+            <th class="td_th">Total</th>
+            <th class="td_th">Last Update</th>
+            <th class="td_th">Location</th>
+            <th class="td_th">Is Active</th>
+            <th>Modify/Delete</th>
+        </tr>
+        {% for obj in inventory_list %}
+            <tr id="list_detail">
+                <td class="td_th">{{ obj.product_obj.id }}</td>
+                <td class="td_th">{{ obj.upc }}<input type="hidden" name="upc" value="{{ obj.upc }}" readonly></td>
+                <td class="td_th">{{ obj.product_name.name }}</td>
+                <td class="td_th">{{ obj.product_obj.product_type_id.name }}</td>
+                <td class="td_th">{{ obj.product_obj.brand_id.name }}</td>
+                <td class="td_th"><input type="text" name="retail_price_{{ obj.upc }}" style="width: 45px" value="{{ obj.retail_price }}"></td>
+                <td class="td_th"><input type="text" name="store_price_{{ obj.upc }}" style="width: 45px" value="{{ obj.store_price }}"></td>
+                <td class="td_th">{{ obj.product_obj.weight }}</td>
+                <td class="td_th">
+                    {{ obj.product_obj.description }}</td>
+                <td class="td_th"> <a href="{% url 'inventory:image_add' obj.upc %}"
+                           style="text-decoration: None" class="btn btn-danger">Upload</a></td>
+                <td class="td_th"><input type="text" name="total_{{ obj.upc }}" style="width: 45px"
+                           value="{{ obj.total }}"></td>
+                <td class="td_th">{{ obj.update_at }}</td>
+                {#                <td><input type="text" style="width: 45px " name="location" value="{{ obj.location }}"></td>#}
+                <td class="td_th">
+                    <select class="form-control" name="location_id_{{ obj.upc }}">
+                        {% for item in location_list %}
+                            <option value={{ item.id }} {% if item.id == obj.location.id %}selected {% endif %}>
+                                {% if item.id %}
+                                    {{ item.location }}
+                                {% else %}
+                                    No Location Defined
+                                {% endif %}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </td>
+                <td class="td_th">
+                    <select id="is_active" name="is_active_{{ obj.upc }}" style="width: 60px">
+                        <option value="True" {% if obj.is_active %}selected{% endif %}>True</option>
+                        <option value="False" {% if not obj.is_active %}selected{% endif %}>False</option>
+                    </select>
+                </td>
+                <td>
+                    <button type="submit" class="btn btn-primary modify-button"
+                            name="obj_upc" value="{{ obj.upc }}">Modify
+                    </button>
+                    <button class="btn btn-danger delete-button" data-id="{{ obj.upc }}">
+                        <a href="{% url 'inventory:inventory_delete' obj.upc %}"
+                           style="text-decoration: None" class="btn btn-danger">Delete</a>
+                    </button>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</form>
+</body>
+</html>

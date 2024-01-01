@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Add a new Brand {% endblock %}
+{% block content %}
+
+
+    <h2>Location Management</h2>
+    <form action="" method="post" style="height: 150px">
+        {% csrf_token %}
+
+        <p>
+            <lable>Location Name: <input type="text" name="location"></lable>
+        </p>
+        <p id="is_active">
+            <label>Is_Active: </label> &nbsp&nbsp Active <input id="active" type="radio" name="is_active" value="True">
+            Inactive<input type="radio" name="is_active" value="False">
+        </p>
+        <p>
+            <lable><input type="reset"></lable>
+
+            <lable><input type="submit"></lable>
+        </p>
+        <div class="list">
+            <table>
+                <thead>
+                <tr>
+                    <th>Location ID</th>
+                    <th>Location</th>
+                    <th>Is active</th>
+                    <th>Modify/Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for obj in data_list %}
+                    <tr>
+                        <td>{{ obj.id }} </td>
+                        <td>{{ obj.location }}</td>
+                        <td>{{ obj.is_active }}</td>
+                        <td><a href="{% url 'inventory:location_edit' obj.id %}">Modify</a>
+                            <a href="{% url 'inventory:location_delete' obj.id %}" class="btn btn-danger">/Delete</a></td>
+                        </td>
+                        <td>{{ obj.created_at }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </form>
+
+{% endblock %}

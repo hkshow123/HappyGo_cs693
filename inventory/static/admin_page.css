@@ -1,0 +1,97 @@
+h2 {
+    text-align: center;
+}
+
+.nav_head {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    background-color: #333;
+    overflow: hidden;
+    position: relative;
+}
+
+.nav_head li {
+    float: left;
+    display: inline;
+    right: 30px;
+}
+
+li a:hover {
+    color: #111;
+}
+
+li a {
+    display: block;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: white;
+}
+
+.stock, .lend_out, .ranking, .pass_due {
+    width: 335px;
+    height: 200px;
+    float: left;
+    display: inline-block;
+    text-align: left;
+    background-color: white;
+    margin: 20px 10px 10px 10px;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+#sub_box ul {
+    list-style-type: inside;
+    padding: 0px;
+    margin: 0;
+    /*color: indigo;*/
+    color:indigo;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+#sub_box li{
+    padding: 6px 16px 1px 6px;
+}
+
+
+/*.stock li {*/
+/*    list-style-type: none;*/
+/*    padding: 0;*/
+/*    margin: 0;*/
+/*    color: indigo;*/
+/*}*/
+
+/*.lend_out li {*/
+/*    list-style-type: none;*/
+/*    padding: 0;*/
+/*    margin: 0;*/
+/*    color: indigo;*/
+/*}*/
+
+.stock ul span {
+    float: right;
+    padding: 0px 20px;
+}
+
+.ranking ul span {
+    float: right;
+    padding: 0px 20px;
+}
+
+.lend_out ul span {
+    float: right;
+    padding: 0px 20px;
+}
+
+.pass_due ul span {
+    float: right;
+    padding: 0px 20px;
+}
+
+.clearfix:after{
+    content: '';
+    display: block;
+    clear: both;
+    visibility: hidden;
+}

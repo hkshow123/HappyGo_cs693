@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'product_list_bk.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p class="nav">
+<ul class="nav_head">
+    <li><a href="/inventory_home" style="background-color:green">Home</a></li>
+      <li><a href="/inventory/">Inventory </a></li>
+    <li><a href="/inventory/product_add">Product</a></li>
+    <li><a href="/inventory/image_add/">Media</a></li>
+    <li><a href="/inventory/type_add/">Product Type</a></li>
+    <li><a href="/inventory/add_brand">Brand</a></li>
+    <li><a href="/inventory/category_add">Category</a></li>
+    <li><a href="/add_report">Add </a></li>
+    <li><a href="/search">Search</a></li>
+    <li style="float: right;color: cadetblue"><a href="login.html">Log out</a></li>
+</ul>
+</p>
+
+
+<div class="search-label-icon">
+    <form action="" method="post">
+        {% csrf_token %}
+        <p class="search_bar">
+            <label for=""></label>
+            <select name="doc_type" id="type_select" style="width: 100px">
+                {% for key,val in type_list.items %}
+                    <option value="{{ key }}">{{ val }}</option>
+                {% endfor %}
+            </select>
+            <input class="search_text" name="keyword" type="text" placeholder="Search">
+            <input type="submit" id="search_button" value="Search">
+        </p>
+    </form>
+</div>
+<ul>
+    <li>Book</li>
+    <li>Journal</li>
+    <li>magazine</li>
+    <li>Thesis</li>
+    <li>Technical report</li>
+</ul>
+<form id="product_list_form" action="" method="post" class="product_list">
+    {% csrf_token %}
+    <table class="product_list_table" style="width: auto">
+        <tr>
+            <th>id-2</th>
+            <th>UPC</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Brand</th>
+            <th>Weight(Kg)</th>
+            <th>Description</th>
+            <th>Total</th>
+            <th>Last Update</th>
+            <th>Is Active</th>
+            <th>Modify/Delete</th>
+        </tr>
+        {% for obj in product_list %}
+            {% with inventory_obj=inventory_list.obj.id %}
+                <tr style="width: 1300px">
+                    <td>{{ obj.id }}</td>
+                    <td>{{ obj.upc }}</td>
+                    <td>{{ obj.name }}</td>
+                    <td>{{ obj.product_type_id.name }}</td>
+                    <td>{{ obj.brand_id.name }}</td>
+                    <td>{{ obj.weight }}</td>
+                    <td>{{ obj.description }}</td>
+                    <td>{{ inventory_obj.total }}</td>
+                    <td>{{ obj.update_at }}</td>
+                    <td>{{ obj.is_active }}</td>
+                    <td><a href="{% url 'inventory:product_edit' obj.id %}" class="btn btn-primary">Modify</a>
+                        <a href="{% url 'inventory:product_delete' obj.id %}" class="btn btn-danger">/Delete</a>
+                    </td>
+                </tr>
+            {% endwith %}
+        {% endfor %}
+    </table>
+</form>
+</body>
+</html>

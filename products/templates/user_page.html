@@ -1,0 +1,77 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'add_item.css' %}">
+    <style>
+        .left_nav {
+            float: left;
+            position: relative;
+            left: 30px;
+            height: 421px;
+            width: 190px;
+
+        {#background-color: rgba(0, 0, 205, 0.3);#}
+            /*background-color: rgba(0, 0, 0, 0.3);*/
+            /* rgba(65, 105, 250, 0.3);*/
+        }
+
+        .left_nav ul li {
+            height: 36px;
+            line-height: 46px;
+            white-space: nowrap;
+        }
+
+        .left_nav ul li a {
+            color: black;
+            font-size: 18px;
+            margin-left: -5px;
+        }
+
+        .left_nav ul li a span {
+            float: right;
+        }
+
+        .left_nav ul li a:hover {
+            color: #00a4ff;
+        }
+
+
+    </style>
+
+    <meta charset="UTF-8">
+
+    {% block title %}
+        <h2>Manage Your Account</h2>
+    {% endblock %}
+</head>
+<body>
+<p class="nav">
+<ul class="nav_head">
+    <li><a href="{% url 'products:index' %}">Home</a></li>
+    <li><a href="#">Dairy</a></li>
+    <li><a href="#">Fresh</a></li>
+    <li><a href="#">Bakery</a></li>
+    <li><a href="#">Meat</a></li>
+    <li><a href="/products/cart">Shopping Cart</a></li>
+    <li style="float: right;color: cadetblue">
+        <a href="/products/profile">My Account</a></li>
+</ul>
+</p>
+{% block content %}
+    <h3>My Account</h3>
+    <div class="left_nav">
+        <ul>
+            <li><a href="/products/profile">Profiles &nbsp&nbsp<span>&gt</span></a></li>
+
+            <li><a href="/products/address">Address Book &nbsp<span>&gt</span></a></li>
+
+            <li><a href="/products/orders">Order &nbsp&nbsp<span>&gt</span></a></li>
+
+            <li><a href="/products/logout">Log out</a></li>
+        </ul>
+    </div>
+{% endblock content %}
+</body>
+</html>

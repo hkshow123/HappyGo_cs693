@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}
+    <h2>Add a product type</h2>
+{% endblock %}
+
+{% block content %}
+    <style>
+        .main_panel{
+            left: 50px;
+            height: auto;
+            width: 380px;
+        }
+        .product_type_list{
+            top:200px
+        }
+        .form-group{
+            display: inline-block;
+            line-height: 50px;
+        }
+        #category_id {
+            text-align: right;
+            left: -32px;
+        }
+    </style>
+   <form class="main_panel" action="" method="post">
+    {% csrf_token %}
+
+    <div class="form-group" style="text-align: right;">
+        <label for="type_name">Name:</label>
+        <input type="text" name="type_name" id="type_name" value="{{ product_type_obj.name }}">
+    </div>
+   <div class="form-group" style="text-align: right;">
+        <label for="category_id"  class="sel">Category:</label>
+        <select class="form-control" name="category_id" id="category_id">
+            {% for item in category_list %}
+                <option value="{{ item.id}}" >{{ item.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+        <label><input type="reset"></label>
+
+        <label><input type="submit"></label>
+    </p>
+</form>
+<table class="product_type_list" style="width: auto">
+    <tr>
+        <th>Product Type ID</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Modify/Delete</th>
+    </tr>
+    {% for obj in type_list %}
+        <tr>
+            <td>{{ obj.id }}</td>
+            <td>{{ obj.name }}</td>
+            <td>{{ obj.category_id.name }}</td>
+        <td><a href="" class="btn btn-primary">Modify</a>
+                        <a href="" class="btn btn-danger" >/Delete</a></td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}

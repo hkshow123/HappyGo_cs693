@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Add a new Brand {% endblock %}
+{% block content %}
+
+    <h2>Edit brand name</h2>
+    <form action="" method="post" style="height: 150px">
+        {% csrf_token %}
+
+        <p>
+            <lable>Brand Name: <input type="text" name="brand_name" value="{{ obj.name }}"></lable>
+        </p>
+
+        <p>
+            <lable><input type="reset"></lable>
+
+            <lable><input type="submit"></lable>
+        </p>
+        <div class="list">
+            <table>
+                <thead>
+                <tr>
+                    <th>Brand ID</th>
+                    <th>Brand name</th>
+                    <th>Modify/Delete</th>
+                    <th>Created at</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{ obj.id }} </td>
+                    <td>{{ obj.name }}</td>
+                    <td><a href="" class="btn btn-primary">Modify</a>
+                        {#                        /author_edit/{{ obj.id }}"#}
+                        <a href="" class="btn btn-danger">/Delete</a></td>
+                    {#                /delete/?nid={{ obj.id}},{{ "author" }}#}
+                    <td>{{ obj.created_at }}</td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </form>
+
+{% endblock %}

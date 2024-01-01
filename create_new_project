@@ -1,0 +1,46 @@
+1.delete templates目录
+2.common templates in settings.py
+3.use terminal create app, # python3.9 manage.py startapp libapp
+4. register app in settings # registered app --> settings --> installed app -->'libapp.apps.libappconfig'
+libapp -->apps.py --> name = "上级目录.libapp"
+add installed External app in settings 'mptt'
+pip install django-mptt
+
+setup database
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'librarymanagesystem',
+        'USER': 'postgres',
+        'PASSWORD': 'aa11223344',
+        'HOST': 'localhost',
+        'PORT': '5432'
+    }
+}
+5.built relationship between URL and Patterns in urls.py
+       # common the original one and add you own path('index',views.index)
+6.create the response function in views.py
+    1.return render(requst,"html_file")
+7.startup django
+    1. python3.9 manage.py runserver
+8. create templates package in app(for html)
+9. create static package {css,js,pictures}
+
+10. requests 模块可以用python发送网络请求 pip install requests
+11.pip3.9 install mysqlclient
+
+12.settings add postgres info
+13.python3.9 manage.py makemigrations
+14.python3.9 manage.py migrate
+
+15. register admin user to admin.py
+
+16.extended urls add "app_name = 'inventory'" ,app_name must match the namespace in main usrls
+
+17. django admin page
+    1.python manage.py createsuperuser
+    hkshow12 a1234
+    <link rel="stylesheet" href="http://127.0.0.1:8000/static/add_item.css">
+
+ 18。add "  'django.template.context_processors.media',> in setting templates otherwise pictures won't be display
+"
