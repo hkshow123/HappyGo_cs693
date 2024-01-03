@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from django.shortcuts import get_object_or_404
 from django.utils.decorators import method_decorator
 
@@ -102,10 +104,22 @@ def home(request):
 
 @login_required
 def admin_page(request):
-    order_list = Order.objects.all().order_by('created_at')
 
+    order_total =Order.objects.all().count()
+    order_list = Order.objects.all().order_by('created_at')
+    twenty_four_hours_ago = current_time - timedelta(hours=24)
+    order_24 = Order.objects.filter(created_at__gte=twenty_four_hours_ago).count()
+    unship_orders = Order.objects.filter(ship_status=False).count()
+    shipped_orders = Order.objects.filter(ship_status=True).count()
+    out_of_stock_items = ProductInventory.objects.filter(total__lt=1).count()
     content = {
         'order_list': order_list,
+        'order_total':order_total,
+        'order_24':order_24,
+        'unship_orders':unship_orders,
+        'shipped_orders':shipped_orders,
+        'out_of_stock_items':out_of_stock_items
+
     }
     return render(request, "inventory_home.html", content)
 

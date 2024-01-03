@@ -28,7 +28,7 @@ li a {
     color: white;
 }
 
-.stock, .lend_out, .ranking, .pass_due {
+#sub_box {
     width: 335px;
     height: 200px;
     float: left;

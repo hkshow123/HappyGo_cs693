@@ -69,32 +69,23 @@
 
     </style>
     <div class="inventory">
-        <div class="stock" id="sub_box"><span style="font-size: 24px">In stock:</span>
+        <div class="order" id="sub_box"><span style="font-size: 24px">Orders:</span>
             <ul>
-                <li>Book : <span id="stock1">1</span></li>
-                <li>Journal: <span id="stock2">2</span></li>
-                <li>magazine: <span id="stock3">3</span></li>
-                <li>Thesis: <span id="stock4">4</span></li>
-                <li>Technical report: <span id="stock5">5</span></li>
+                <li>Order in 24 hours: <span id="stock1">{{ order_24 }}</span></li>
+                <li>Total: <span id="stock1">{{ order_total }}</span></li>
             </ul>
             <table></table>
         </div>
-        <div class="lend_out" id="sub_box"><span style="font-size: 24px">Lend out:</span>
+        <div class="order-status" id="sub_box"><span style="font-size: 24px">Order status:</span>
             <ul>
-                <li>Book : <span id="stock1">1</span></li>
-                <li>Journal: <span id="stock2">2</span></li>
-                <li>magazine: <span id="stock3">3</span></li>
-                <li>Thesis: <span id="stock4">4</span></li>
-                <li>Technical report: <span id="stock5">5</span></li>
+                <li>Unship orders: <span id="stock1">{{ unship_orders }}</span></li>
+                <li>shipped orders: <span id="stock1">{{ shipped_orders }}</span></li>
             </ul>
         </div>
-        <div class="ranking" id="sub_box"><span style="font-size: 24px">Ranking:</span>
+        <div class="stock" id="sub_box"><span style="font-size: 24px">Out of stock:</span>
             <ul>
-                <li>Book : <span id="stock1">1</span></li>
-                <li>Journal: <span id="stock2">2</span></li>
-                <li>magazine: <span id="stock3">3</span></li>
-                <li>Thesis: <span id="stock4">4</span></li>
-                <li>Technical report: <span id="stock5">5</span></li>
+                <li>Product out of stock: <span id="stock1">{{ out_of_stock_items }}</span></li>
+
             </ul>
         </div>
         <div class="profile">
