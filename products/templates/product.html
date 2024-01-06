@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #pic {
+            display: block;
+            width: 250px;
+            height: 300px;
+        }
+        .details{
+            position: relative;
+            display: block;
+            left: 50px;
+            top:30px;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="details">
+<h3>Product details</h3><br>
+    <label for="title">{{ product_obj.name }}</label><br>
+    <br>
+    <div>
+        {% with invent_obj.media_set.first as media %}
+            {% if media %}
+                <img id="pic" src="{{ MEDIA_URL }}{{ media.url }}"
+                     alt="Image for {{ invent_obj.product_obj.name }}">
+            {% endif %}
+        {% endwith %}
+    </div>
+    <br>
+    <label for="" style="color: red">Price: $ {{ invent_obj.store_price }}</label><br>
+    <br>
+    <label for="">Description:</label>
+    <p>{{ product_obj.description }}</p>
+    <button id="add_to_cart" type="button"
+            onclick="location.href='{% url 'products:add_to_cart' invent_obj.upc %}'">ADD TO
+        CART
+    </button>
+</div>
+</body>
+</html>

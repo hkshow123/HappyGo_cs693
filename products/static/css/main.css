@@ -413,3 +413,8 @@ li {
     left: 10px;
     background-color: #6f94c6;
 }
+
+a:hover{
+    color: aqua;
+
+}

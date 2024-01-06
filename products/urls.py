@@ -38,4 +38,9 @@ urlpatterns = [
 
     # Item Search
     path('item_search/', views.item_search, name='item_search'),
+
+    # Products
+    path('product_detail/<str:upc>', views.product_detail, name='product_detail')
+
+
 ]

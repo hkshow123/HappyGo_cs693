@@ -257,7 +257,6 @@ def checkout(request):
         return render(request, 'checkout.html', {'cart': cart, 'total_price': total_price})
 
 
-
 @login_required
 def orders_view(request):
     profile = Profiles.objects.get(user=request.user),
@@ -273,7 +272,7 @@ def orders_view(request):
 
 @login_required
 def order_detail(request, order_id):
-    profile,created = Profiles.objects.get_or_create(user=request.user)
+    profile, created = Profiles.objects.get_or_create(user=request.user)
     order = get_object_or_404(Order, pk=order_id)
     order_items = OrderItem.objects.filter(order=order)
     total_price = sum(item.price * item.quantity for item in order_items)
@@ -287,7 +286,6 @@ def order_detail(request, order_id):
 
 
 def dairy_view(request):
-
     category_obj = Category.objects.get(name='Dairy')
     product_types = ProductType.objects.filter(category_id=category_obj)
 
@@ -295,7 +293,7 @@ def dairy_view(request):
     category_list = Category.objects.all().order_by('id')
     brand_list = Brand.objects.all().order_by('id')
     inventory_list = (ProductInventory.objects.filter
-                      (is_active=True,product_type_id__in=product_types).all().order_by('product_id'))
+                      (is_active=True, product_type_id__in=product_types).all().order_by('product_id'))
     media_list = Media.objects.all().order_by('upc')
     for obj in inventory_list:
         obj.product_obj = Product.objects.get(upc=obj.upc)
@@ -311,7 +309,6 @@ def dairy_view(request):
 
 
 def meat_view(request):
-
     category_obj = Category.objects.get(name='Meat')
     product_types = ProductType.objects.filter(category_id=category_obj)
 
@@ -319,7 +316,7 @@ def meat_view(request):
     category_list = Category.objects.all().order_by('id')
     brand_list = Brand.objects.all().order_by('id')
     inventory_list = (ProductInventory.objects.filter
-                      (is_active=True,product_type_id__in=product_types).all().order_by('product_id'))
+                      (is_active=True, product_type_id__in=product_types).all().order_by('product_id'))
     media_list = Media.objects.all().order_by('upc')
     for obj in inventory_list:
         obj.product_obj = Product.objects.get(upc=obj.upc)
@@ -335,7 +332,6 @@ def meat_view(request):
 
 
 def fruit_view(request):
-
     category_obj = Category.objects.get(name='Fruit')
     product_types = ProductType.objects.filter(category_id=category_obj)
 
@@ -343,7 +339,7 @@ def fruit_view(request):
     category_list = Category.objects.all().order_by('id')
     brand_list = Brand.objects.all().order_by('id')
     inventory_list = (ProductInventory.objects.filter
-                      (is_active=True,product_type_id__in=product_types).all().order_by('product_id'))
+                      (is_active=True, product_type_id__in=product_types).all().order_by('product_id'))
     media_list = Media.objects.all().order_by('upc')
     for obj in inventory_list:
         obj.product_obj = Product.objects.get(upc=obj.upc)
@@ -359,7 +355,6 @@ def fruit_view(request):
 
 
 def bakery_view(request):
-
     category_obj = Category.objects.get(name='Bakery')
     product_types = ProductType.objects.filter(category_id=category_obj)
 
@@ -367,7 +362,7 @@ def bakery_view(request):
     category_list = Category.objects.all().order_by('id')
     brand_list = Brand.objects.all().order_by('id')
     inventory_list = (ProductInventory.objects.filter
-                      (is_active=True,product_type_id__in=product_types).all().order_by('product_id'))
+                      (is_active=True, product_type_id__in=product_types).all().order_by('product_id'))
     media_list = Media.objects.all().order_by('upc')
     for obj in inventory_list:
         obj.product_obj = Product.objects.get(upc=obj.upc)
@@ -380,7 +375,6 @@ def bakery_view(request):
         'media_list': media_list
     }
     return render(request, 'index.html', content)
-
 
 
 def item_search(request):
@@ -404,3 +398,13 @@ def item_search(request):
                 'media_list': media_list
             }
             return render(request, 'index.html', content)
+
+
+def product_detail(request, upc):
+    product_obj = Product.objects.get(upc=upc)
+    invent_obj = ProductInventory.objects.get(upc=upc)
+
+    content = {"product_obj": product_obj,
+               "invent_obj": invent_obj}
+
+    return render(request, 'product.html', content)

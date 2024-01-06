@@ -85,7 +85,9 @@
                                      alt="Image for {{ invent_obj.product_obj.name }}">
 
                             {% endif %}
-                            <h4>{{ invent_obj.product_obj.name }}</h4>
+                            <a href="{% url 'products:product_detail' invent_obj.upc %}" >
+                                <h4>{{ invent_obj.product_obj.name }}</h4>
+                            </a>
                             <button id="add_to_cart" type="button"
                                     onclick="location.href='{% url 'products:add_to_cart' invent_obj.upc %}'">ADD TO
                                 CART
